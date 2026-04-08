@@ -1,5 +1,5 @@
 server:
-  port:8106
+  port: 8106
 spring:
   application:
     name: inube-registry-service
