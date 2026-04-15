@@ -40,3 +40,12 @@ eureka:
     healthcheck:
       enabled: true
   instance:
+      leaseRenewalIntervalInSeconds: 5
+      leaseExpirationDurationInSeconds: 15
+      preferIpAddress: true
+
+jwt:
+  secret: e4b7f9d2a13c4efb92d7c31ae8f04c9bd3e27fa649c8d1e0b57a23cf8b9e41ac
+  
+server:
+  port: 8107
