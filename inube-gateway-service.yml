@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: inube-gateway-service
+  security:
+    enabled: false
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        - id: inube-auth-auth
+          uri: lb://INUBE-AUTHENTICATION-SERVICE
+          predicates:
+            - Path=/api/inube/auth/**
+        - id: inube-auth-user
+          uri: lb://INUBE-AUTHENTICATION-SERVICE
+          predicates:
+            - Path=/api/inube/user/**
+        - id: inube-service
+          uri: lb://INUBE-SERVICE
+          predicates:
+            - Path=/api/inube/service/**
+          filters:
+            - AuthenticationFilter
+        - id: books-service
+          uri: lb://BOOKS-SERVICE
+          predicates:
+            - Path=/api/inube/books/**
+          filters:
+            - AuthenticationFilter
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8106/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+  instance:
