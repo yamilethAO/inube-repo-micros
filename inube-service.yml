@@ -1,0 +1,40 @@
+server:
+  port: 8109
+
+spring:
+  application:
+    name: inube-service
+  datasource:
+    url: jdbc:postgresql://localhost:5437/aba
+    username : aba
+    password: aba
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        
+jwt:
+  secret: e4b7f9d2a13c4efb92d7c31ae8f04c9bd3e27fa649c8d1e0b57a23cf8b9e41ac
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8106/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 15
+    preferIpAddress: true
+
